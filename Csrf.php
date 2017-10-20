@@ -1,4 +1,15 @@
 <?php 
+/**
+* Simple class to generate unique token
+*
+* @package    csrf module 
+* @subpackage none
+* @author     Amine L'ch 
+* @email     aminelch95@gmail.com 
+* @github     @aminelch 
+* @version    1.0
+* ...
+*/
 
 class  Csrf
 {
@@ -34,5 +45,9 @@ class  Csrf
 		}
 	}
 
+public static function str_random ($length){
+	$alphabet="azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789";
+		return substr(str_shuffle(str_repeat($alphabet, $length)),0,$length);
 
+}
 }
