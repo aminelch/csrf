@@ -2,12 +2,14 @@
 /**
 * Simple class to generate unique token
 *
-* @package    csrf module 
-* @subpackage none
-* @author     Amine L'ch 
-* @email     aminelch95@gmail.com 
-* @github     @aminelch 
-* @version    1.0
+* @package     Auth
+* @subpackage  CSRF module
+* @author      Amine L'ch
+* @email       aminelch95@gmail.com
+* @github      @aminelch
+* @website     https://aminelch.github.io
+* @version     0.1
+* @license     http://www.apache.org/licenses/
 * ...
 */
 
@@ -27,17 +29,25 @@ class  Csrf
 	}
 
 
-	public static function generate($length=8){
+	public static function generate($length=8)
+    {
+        self::checkSession();
 		if(isset($_SESSION['Csrf'])&& !empty($_SESSION['Csrf'])){
 			return $_SESSION['Csrf'];
 		}
-		return Csrf::RandomToken($length);
+		return self::RandomToken($length);
 	}
 
-	
+	private static function checkSession() {
+        // si Session n'est pas défini on démarre la session
+        if(session_status() !== PHP_SESSION_ACTIVE){
+            session_start();
+        }
+    }
 
 	public static function check($testvalue) {
-		if(! isset($_SESSION['Csrf']) || $_SESSION['Csrf']!=$testvalue){
+        self::checkSession();
+        if(! isset($_SESSION['Csrf']) || $_SESSION['Csrf']!=$testvalue){
 			return false; 
 		}	
 		else {
