@@ -10,10 +10,10 @@
 * @website     https://aminelch.github.io
 * @version     0.1
 * @license     http://www.apache.org/licenses/
-* ...
+* 
 */
 
-<?php 
+ 
 
 class  Csrf {
 /**
